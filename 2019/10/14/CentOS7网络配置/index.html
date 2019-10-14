@@ -16,10 +16,18 @@
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="安装CentOS后，是不能直接连接到网络的，这里介绍基于命令配置网络">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-14T07:04:04.418Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/6.1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/6.2.png">
+<meta property="og:updated_time" content="2019-10-14T08:05:30.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7网络配置">
 <meta name="twitter:description" content="安装CentOS后，是不能直接连接到网络的，这里介绍基于命令配置网络">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/14/CentOS7网络配置/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -203,6 +211,15 @@
         <blockquote>
 <p>安装CentOS后，是不能直接连接到网络的，这里介绍基于命令配置网络  </p>
 </blockquote>
+<a id="more"></a>
+<h2 id="1、在命令行串口查看IP地址"><a href="#1、在命令行串口查看IP地址" class="headerlink" title="1、在命令行串口查看IP地址"></a>1、在命令行串口查看IP地址</h2><p>输入<code>dclient</code>，获取一个自动IP地址，再输入<code>ip addr</code>查看IP<br><img src="/2019/10/14/CentOS7网络配置/1.png" alt="图片"></p>
+<h2 id="2、在centOS软件界面查看IP"><a href="#2、在centOS软件界面查看IP" class="headerlink" title="2、在centOS软件界面查看IP"></a>2、在centOS软件界面查看IP</h2><p>2.1 点击VMware虚拟机左上角的“编辑”，选择“虚拟网络编译器”。<br>2.2  选中VMnet8（NAT模式），再点击右侧的“NAT设置”此时会看到如下界面<br><img src="/2019/10/14/CentOS7网络配置/2.png" alt="图片"><br>记住这些IP地址，后续有用。  </p>
+<h2 id="3、安装vim编辑器"><a href="#3、安装vim编辑器" class="headerlink" title="3、安装vim编辑器"></a>3、安装vim编辑器</h2><p>3.1 在命令行输入： <code>vim /etc/sysconfig/network-scricpts/ifcfg-ens33</code><br>3.2 <strong>这里有可能会出现问题，命令窗口出现<code>comand not found</code>，这里说明没有安装vim编辑器。先安装vim编辑器即可，具体步骤如下：</strong><br>3.3 命令行输入：<code>yum install vim</code>等待系统响应并安装，安装过程中会提示你选择是否安装某些文件，让你输入<code>y/d/n</code>中的一个，一律输入<code>y</code>。直到安装成功。</p>
+<h2 id="4、修改设置"><a href="#4、修改设置" class="headerlink" title="4、修改设置"></a>4、修改设置</h2><p>4.1 安装vim成功后，再次输入 <code>vim /etc/sysconfig/network-scricpts/ifcfg-ens33</code>，输入后，会出现如下界面：<br><img src="/2019/10/14/CentOS7网络配置/3.png" alt="图片"><br>4.2 在上述命令行中做修改和添加，具体如下<br><img src="/2019/10/14/CentOS7网络配置/4.png" alt="图片"><br>4.3 修改完成后，按esc键退出，再按住shift键+wq，输入wq后完成配置的保存和退出<br><img src="/2019/10/14/CentOS7网络配置/5.png" alt="图片">   </p>
+<h2 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h2><p>5.1 输入<code>ping 192.168.243.2</code>测试和主机通信，出现黄色框的数据表示连接成功。按Ctrl+C停止数据传送。<br><img src="/2019/10/14/CentOS7网络配置/6.1.png" alt="图片"><br>5.2 在主机连接了外网时，输入<code>ping www.baidu.com</code>测试和外网通信，出现黄色框的数据表示连接成功。按Ctrl+C停止数据传送。<br><img src="/2019/10/14/CentOS7网络配置/6.2.png" alt="图片">   </p>
+<ul>
+<li>网络配置成功！</li>
+</ul>
 
       
 
@@ -346,7 +363,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、在命令行串口查看IP地址"><span class="toc-number">1.</span> <span class="toc-text">1、在命令行串口查看IP地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、在centOS软件界面查看IP"><span class="toc-number">2.</span> <span class="toc-text">2、在centOS软件界面查看IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、安装vim编辑器"><span class="toc-number">3.</span> <span class="toc-text">3、安装vim编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、修改设置"><span class="toc-number">4.</span> <span class="toc-text">4、修改设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、测试"><span class="toc-number">5.</span> <span class="toc-text">5、测试</span></a></li></ol>
                     </div>
                 </span>
             </div>
