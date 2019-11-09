@@ -6,36 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>如何使用markdown书写博客 | Blog</title>
+  <title>MySQL事务详解 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里介绍用markdown格式书写博客的方法，简单易学">
-<meta name="keywords" content="博客设置">
+  <meta name="description" content="这里介绍MySQL数据库中重要的内容及其相关示例 ——  事务">
+<meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用markdown书写博客">
-<meta property="og:url" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/index.html">
+<meta property="og:title" content="MySQL事务详解">
+<meta property="og:url" content="http://yoursite.com/2019/11/09/MySQL事务详解/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="这里介绍用markdown格式书写博客的方法，简单易学">
+<meta property="og:description" content="这里介绍MySQL数据库中重要的内容及其相关示例 ——  事务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%A0%87%E9%A2%98m.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%A0%87%E9%A2%98%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%8D%A2%E8%A1%8Cm.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%8D%A2%E8%A1%8C%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%AE%B5%E8%90%BDm.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%AE%B5%E8%90%BD%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8m.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E8%B6%85%E9%93%BE%E6%8E%A5m.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E8%B6%85%E9%93%BE%E6%8E%A5%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80.png">
-<meta property="og:image" content="http://img.netbian.com/file/2019/0414/7bee7eef5fc44417a0b02a46576e7e16.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%88%97%E8%A1%A8m.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%88%97%E8%A1%A8%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E5%88%86%E9%9A%94%E7%BA%BFm.png">
-<meta property="og:updated_time" content="2019-10-14T09:11:56.604Z">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C0.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C00.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C1.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C10.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C21.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C22.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C23.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C23.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C25.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C26.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C27.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C28.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C29.png">
+<meta property="og:updated_time" content="2019-11-09T14:24:14.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用markdown书写博客">
-<meta name="twitter:description" content="这里介绍用markdown格式书写博客的方法，简单易学">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/12/如何使用markdown书写博客/%E6%A0%87%E9%A2%98m.png">
+<meta name="twitter:title" content="MySQL事务详解">
+<meta name="twitter:description" content="这里介绍MySQL数据库中重要的内容及其相关示例 ——  事务">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C0.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -167,20 +165,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-如何使用markdown书写博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MySQL事务详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      如何使用markdown书写博客
+      MySQL事务详解
     </h1>
   
 
         
-        <a href="/2019/10/12/如何使用markdown书写博客/" class="archive-article-date">
-  	<time datetime="2019-10-12T09:09:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-12</time>
+        <a href="/2019/11/09/MySQL事务详解/" class="archive-article-date">
+  	<time datetime="2019-11-09T14:23:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
 </a>
         
         
@@ -199,102 +197,49 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>这里介绍用markdown格式书写博客的方法，简单易学</p>
+<p>这里介绍MySQL数据库中重要的内容及其相关示例 ——  事务 </p>
 </blockquote>
-<a id="more"></a>   
-<h1 id="一、Markdown简要介绍"><a href="#一、Markdown简要介绍" class="headerlink" title="一、Markdown简要介绍"></a>一、Markdown简要介绍</h1><p>Markdown是一种轻量级标记语言，可以使用文本格式书写文档。Markdown语法简单，功能比纯文本强，在书写博客方面非常受欢迎。  </p>
-<h1 id="二、Markdown使用方法"><a href="#二、Markdown使用方法" class="headerlink" title="二、Markdown使用方法"></a>二、Markdown使用方法</h1><h2 id="2-1-标题"><a href="#2-1-标题" class="headerlink" title="2.1 标题"></a>2.1 标题</h2><ul>
-<li><p>markdown书写分级标题时，在标题文字前添加#号即可，注意#号和标题文字之间需要空格，格式：  <strong><em># 一级标题 ，## 二级标题  ，### 三级标题</em></strong>，书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%A0%87%E9%A2%98m.png" alt="标题m">   </p>
-</li>
-<li><p>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%A0%87%E9%A2%98%E6%95%88%E6%9E%9C.png" alt="图片">  </p>
-<h2 id="2-2-换行"><a href="#2-2-换行" class="headerlink" title="2.2 换行"></a>2.2 换行</h2></li>
-<li><p>markdown书写文本时，如果想换行,需要在换行文字后面连续敲击两下空格后，再按enter换行不能通过直接按enter换行。 </p>
-</li>
-<li><p>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%8D%A2%E8%A1%8Cm.png" alt="图片">   </p>
-</li>
-<li><p>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%8D%A2%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="图片">   </p>
-<h2 id="2-3-段落"><a href="#2-3-段落" class="headerlink" title="2.3 段落"></a>2.3 段落</h2></li>
-<li><p>分段落的方法就是连续两个以上的enter，段落1（enter enter）段落2。可以理解为英语的段落，<strong>两段落中间至少有一行间隔</strong>。分段落可以理解为英语论文的格式，两段落之间留有一空行。   </p>
-</li>
-<li><p>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%AE%B5%E8%90%BDm.png" alt="图片">   </p>
-</li>
-<li><p>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E6%AE%B5%E8%90%BD%E6%95%88%E6%9E%9C.png" alt="图片">   </p>
-<h2 id="2-4-区块引用"><a href="#2-4-区块引用" class="headerlink" title="2.4 区块引用"></a>2.4 区块引用</h2></li>
-<li><p>区块的使用方法就是在左侧加 &gt; 符号，会自动生成区块 </p>
-<blockquote>
-<p>这是一个区块，看左侧会有一条竖杠  </p>
-</blockquote>
-</li>
-<li><p>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8m.png" alt="图片"> </p>
-</li>
-<li><p>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%8C%BA%E5%9D%97%E5%BC%95%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="图片">   </p>
-<h2 id="2-5-超链接"><a href="#2-5-超链接" class="headerlink" title="2.5 超链接"></a>2.5 超链接</h2></li>
-</ul>
-<ol>
-<li>网络连接<br>网络连接格式’[网络名] (网络地址)’，例如 <a href="https://www.baidu.com/" target="_blank" rel="noopener">百度</a></li>
-<li>网页图片链接<br>网络图片格式’[图片名] (网络图片地址)’，这里图片地址，通过点击网页图片，右键复制图片地址即可。具体方法看图片：</li>
-</ol>
+<a id="more"></a>
+<h2 id="1、事务的定义"><a href="#1、事务的定义" class="headerlink" title="1、事务的定义"></a>1、事务的定义</h2><p>一个事务是一个完整的业务逻辑单元，不可再分；例如：银行转账，从A账户到B账号转账1000元，需要执行两条update语句：  </p>
+<pre><code class="mysql">update act set balance=balance-1000 where actno=&apos;账户A&apos;;      
+update act set balance=balance+1000 where actno=&apos;账户B&apos;;</code></pre>
+<p>以上两条DML语句只能同时成功或失败，必须使用‘事务’机制。 </p>
+<h2 id="2、事务语句"><a href="#2、事务语句" class="headerlink" title="2、事务语句"></a>2、事务语句</h2><p>和事务相关的语句只有DML语句（update、insert、delete），其他SQL语句不能使用事务机制。<br>只能使用DML语句的原因是：DML语句与数据处理息息相关，增删改操作是对数据库操作的最主要单元。<br>事务的存在是为了保证数据的<strong>完整性，安全性</strong>。  </p>
+<h2 id="3、事务机制注意事项"><a href="#3、事务机制注意事项" class="headerlink" title="3、事务机制注意事项"></a>3、事务机制注意事项</h2><p>若当前业务只需要一条DML语句就可以完成任务，那么就不需要事务机制。然而，在现实业务中，往往需要多条DML语句才能完成一个业务，此时就需要事务。  </p>
+<h2 id="4、事务的四个特性"><a href="#4、事务的四个特性" class="headerlink" title="4、事务的四个特性"></a>4、事务的四个特性</h2><h3 id="4-1-原子性-A"><a href="#4-1-原子性-A" class="headerlink" title="4.1 原子性 A"></a>4.1 原子性 A</h3><p>事务是最小的工作单元，不可再分。  </p>
+<h3 id="4-2一致性-C"><a href="#4-2一致性-C" class="headerlink" title="4.2一致性 C"></a>4.2一致性 C</h3><p>事务必须保证多条DML语句同时成功或失败。   </p>
+<h3 id="4-3-隔离性-I"><a href="#4-3-隔离性-I" class="headerlink" title="4.3 隔离性 I"></a>4.3 隔离性 I</h3><p>事务A和事务B具有隔离，以防数据紊乱。隔离分为四个级别     </p>
+<h4 id="第一级别：读未提交read-uncommitted"><a href="#第一级别：读未提交read-uncommitted" class="headerlink" title="* 第一级别：读未提交read uncommitted"></a>* 第一级别：读未提交<code>read uncommitted</code></h4><p>对方事务还没有提交，我们当前事务可以读取到对方未提交的数据。该级别存在脏读现象(Dirty Read)，表示读到了脏数据（未提交的数据）。  </p>
+<h4 id="第二级别：读已提交read-committed"><a href="#第二级别：读已提交read-committed" class="headerlink" title="* 第二级别：读已提交read committed"></a>* 第二级别：读已提交<code>read committed</code></h4><p>可以读到对方提交过的数据，读已提交存在的问题是：不可重复读（对方提交频繁时，读到的数据一直在变，不重复）。<br>这种隔离级别解决了脏读现象。     </p>
+<h4 id="第三级别：可重复读-repeatable-read"><a href="#第三级别：可重复读-repeatable-read" class="headerlink" title="* 第三级别：可重复读 repeatable read"></a>* 第三级别：可重复读 <code>repeatable read</code></h4><p>这种隔离级别解决了：不可重复读问题。这种隔离级别存在的问题是：读到的数据是幻像。    </p>
+<h4 id="第四级别：序列化读-串行化读serializable"><a href="#第四级别：序列化读-串行化读serializable" class="headerlink" title="* 第四级别：序列化读/串行化读serializable"></a>* 第四级别：序列化读/串行化读<code>serializable</code></h4><p>解决了所有问题，但是效率低，需要事务排队。    </p>
 <ul>
-<li>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E8%B6%85%E9%93%BE%E6%8E%A5m.png" alt="图片"> </li>
-<li>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E8%B6%85%E9%93%BE%E6%8E%A5%E6%95%88%E6%9E%9C.png" alt="图片">  </li>
-<li>复制网页图片地址的方法：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80.png" alt="图片"> </li>
-<li>下面是我在网页上找到的一张图片，作为演示：<br><img src="http://img.netbian.com/file/2019/0414/7bee7eef5fc44417a0b02a46576e7e16.jpg" alt="美女">   <h2 id="2-6-无序列表"><a href="#2-6-无序列表" class="headerlink" title="2.6 无序列表"></a>2.6 无序列表</h2>无序项前面加 * + - 中任意一种添加无序列表，注意添加空格</li>
-<li>无序列表1  </li>
-</ul>
-<ul>
-<li>无序列表2  </li>
-</ul>
-<ul>
-<li>无序列表3  <h2 id="2-7-有序列表"><a href="#2-7-有序列表" class="headerlink" title="2.7 有序列表"></a>2.7 有序列表</h2>有序列表前加数字 1. 2.  ，注意添加空格 </li>
-</ul>
-<ol>
-<li>有序列表1  </li>
-<li>有序列表2  </li>
-<li>有序列表3  </li>
-</ol>
-<ul>
-<li>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%88%97%E8%A1%A8m.png" alt="图片"> </li>
-<li>显示效果如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%88%97%E8%A1%A8%E6%95%88%E6%9E%9C.png" alt="图片">  <h2 id="2-8-分隔线"><a href="#2-8-分隔线" class="headerlink" title="2.8 分隔线"></a>2.8 分隔线</h2>分割线用超过三个的 — 或 *** ，便可将文本分隔开。如下所示：</li>
-</ul>
-<hr>
-<p>分隔线中间插入文字时，最好上下各留一个空行  </p>
-<hr>
-<p>分割线使用得当时，能让文本显示效果变好。  </p>
-<hr>
-<ul>
-<li>书写方法如图：<br><img src="/2019/10/12/如何使用markdown书写博客/%E5%88%86%E9%9A%94%E7%BA%BFm.png" alt="图片"> <h2 id="2-9-字体"><a href="#2-9-字体" class="headerlink" title="2.9 字体"></a>2.9 字体</h2></li>
-<li>两种常用的修改字体方法，加粗和斜体。格式如下：<br>**这里写入想要加粗的内容**<br>*这里写入想要斜体的内容*<br>***这里写入想要斜体加粗的内容***  </li>
-<li>显示效果如下：  </li>
-<li>这里是斜体*  </li>
-<li><em>这里是加粗*</em>   </li>
-<li><strong>这里是斜体加粗*</strong>   <h2 id="2-10-代码"><a href="#2-10-代码" class="headerlink" title="2.10 代码"></a>2.10 代码</h2></li>
-</ul>
-<ol>
-<li>代码句   </li>
-</ol>
-<ul>
-<li>代码句内容用反引号包裹，格式：  `这里添加代码内容`  ，显示效果为：<code>print(&#39;hello world！&#39;)</code></li>
-</ul>
-<ol start="2">
-<li>代码块  </li>
-</ol>
-<ul>
-<li>代码块通常是多行代码，用```包裹代码，格式如下：<br>```<br>代码<br>代码<br>代码<br>```  </li>
-<li>显示效果如下： </li>
-</ul>
-<pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">Tool</span></span>{ <span class="comment">//创建一个tool类，采用单例设计模式</span>
-    <span class="function"><span class="keyword">private</span> <span class="title">Tool</span><span class="params">()</span> </span>{} <span class="comment">//构造方法私有化，外部类不能直接创建本类对象</span>
-    <span class="keyword">private</span> <span class="keyword">static</span>  Tool tool = <span class="keyword">new</span> Tool(); <span class="comment">//声明一个本类对象(私有的、静态的)，只有在本类，才能创建对象</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Tool <span class="title">getInstanceTool</span><span class="params">()</span> </span>{ <span class="comment">//创建一个（静态的）获取实例的方法，为外部调用本类内部对象提供窗口</span>
-        <span class="keyword">return</span> tool;                                       <span class="comment">//tool的生命周期从声明Tool类时便诞生，用完才结束</span>
-    }
-    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span> </span>{<span class="comment">//本类内部的方法，只能通过tool对象才能调用</span>
-        System.out.println(<span class="string">"饿汉式单例设计模式启动！"</span>);
-    }    
-}</code></pre>
-<h2 id="2-11-转义符"><a href="#2-11-转义符" class="headerlink" title="2.11 转义符"></a>2.11 转义符</h2><ul>
-<li>有时书写文档时，想要在文章开头正常显示* `等符号时，需要添加转义字符\，格式如下：<br>\* 书写内容  </li>
-<li>在符号前加\进行转义，将符号正常显示，这里就不是无序列表了，例如：<br>* 多用<br>+ 多想  </li>
+<li>oracle数据库默认的隔离级别是：读已提交。   </li>
+<li>MySQL数据库默认的隔离级别是：可重复读。   <h3 id="4-4-持久性-D"><a href="#4-4-持久性-D" class="headerlink" title="4.4 持久性 D"></a>4.4 持久性 D</h3>最终数据必须持久化到硬盘文件中，事务才算成功结束，也就是说，事务的结束，是在执行到硬盘后，不管是否更新硬盘信息，必须到这一步。  <h3 id="5、演示事务"><a href="#5、演示事务" class="headerlink" title="5、演示事务"></a>5、演示事务</h3></li>
+<li>注意：MySQL数据库默认情况下是自动提交的。（也即每执行一条DML语句则提交一次），关闭自动提交( start transaction )  </li>
+<li>设置数据库的隔离级别: <code>set global transaction isolation  level (级别名)</code>   </li>
+<li>创建演示表test  <pre><code class="MySQL">drop table if exists test;
+create table if not exists test(
+  id int(10) primary key auto_increment,
+  name varchar(10) not null
+);  
+desc MySQL事务详解;</code></pre>
+<img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C0.png" alt="pic">   </li>
+<li>为了更直观的显示隔离级别，打开两个DOS窗口，模拟两个用户同时登陆MySQL数据库，更直观的显示在事务机制下的数据变化。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C00.png" alt="pic">    <h4 id="5-1-演示MySQL默认的隔离级别，读已提交（read-committed）"><a href="#5-1-演示MySQL默认的隔离级别，读已提交（read-committed）" class="headerlink" title="5.1 演示MySQL默认的隔离级别，读已提交（read committed）"></a>5.1 演示MySQL默认的隔离级别，读已提交（read committed）</h4></li>
+<li>在DOS1输入：<code>insert into test(name) values(&#39;jake&#39;);</code><br>在DOS2输入：<code>select * from test;</code><br>结果如图，MySQL默认的是read committed级别，也即自动提交，更新数据后，自动存入硬盘<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C1.png" alt="pic"><br>即使是在DOS1窗口输入 rollback回滚数据，在DOS2仍旧能看见数据。这是因为MySQL默认提交(commit)，事务已经结束。导致输入rollback是无效的。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C10.png" alt="pic">   <h4 id="5-2-演示第一级别，读未提交（read-uncommitted）"><a href="#5-2-演示第一级别，读未提交（read-uncommitted）" class="headerlink" title="5.2 演示第一级别，读未提交（read uncommitted）"></a>5.2 演示第一级别，读未提交（read uncommitted）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level read uncommitted;</code>，设置事务机制开始<code>start transaction</code><br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C21.png" alt="pic">   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;jake&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，可以直接查看到数据变化，这是因为‘读未提交’级别。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C22.png" alt="pic">   </li>
+<li>然后在DOS1窗口输入<code>rollback</code>进行回滚操作，结束本次事务机制，结果如图，显然，rollback会将数据不存入硬盘，因此在此次事务结束后，再查寻test表格，结果为空。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C23.png" alt="pic">  <h4 id="5-3-演示第二级别，读已提交（read-committed）"><a href="#5-3-演示第二级别，读已提交（read-committed）" class="headerlink" title="5.3 演示第二级别，读已提交（read committed）"></a>5.3 演示第二级别，读已提交（read committed）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level read committed;</code>，设置事务机制开始<code>start transaction</code>   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;mary&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，不能查看到数据变化，这是因为‘读已提交’级别。在commit之前，读不到数据变化。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C23.png" alt="pic">  </li>
+<li>在DOS1窗口输入<code>commit</code>提交本次事务，结束事务，并将数据存入硬盘，再在DOS2窗口读取数据，如图所示。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C25.png" alt="pic">    <h4 id="5-4-演示第三级别，可重复读（repeatable-read）"><a href="#5-4-演示第三级别，可重复读（repeatable-read）" class="headerlink" title="5.4 演示第三级别，可重复读（repeatable read）"></a>5.4 演示第三级别，可重复读（repeatable read）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level repeatable read;</code>，设置事务机制开始<code>start transaction</code>   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;duke&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，不能查看到数据变化，然后在DOS1窗口输入<code>commit</code>提交本次事务，结束事务，并将数据存入硬盘，再在DOS2窗口读取数据，还是不能读到数据变化，这就是重复读的含义。如图所示。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C26.png" alt="pic">  </li>
+<li>为了更直观的显示 repeatable read 级别的特点，我们在DOS1窗口将test表清空，提交以后。再在DOS2窗口查看变化，发现仍旧没变。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C27.png" alt="pic">   <h4 id="5-4-演示第四级别，序列化读（serializable）"><a href="#5-4-演示第四级别，序列化读（serializable）" class="headerlink" title="5.4 演示第四级别，序列化读（serializable）"></a>5.4 演示第四级别，序列化读（serializable）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level serializable;</code>，接着在test表中默认插入几个数据，便于观察，然后设置事务机制开始<code>start transaction</code>  </li>
+<li>设置结束后，在DOS1窗口插入新数据<code>insert into test(name) values(&#39;xiaoming&#39;);</code>，然后在DOS2窗口查看数据变化，发现程序在DOS2窗口处于等待状态，这就是序列读取的特点，一次只允许一个事务进行。<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C28.png" alt="pic">   </li>
+<li>等待一段时间后，DOS2窗口会报错：<code>ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction</code> </li>
+<li>在DOS1窗口提交事务，再在DOS2窗口查询数据，便可以查到数据变化。如图所示：<br><img src="/2019/11/09/MySQL事务详解/MySQL%E4%BA%8B%E5%8A%A1%E8%AF%A6%E8%A7%A3%5C29.png" alt="pic">  </li>
 </ul>
 
       
@@ -340,7 +285,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客设置</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -396,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sidang1897.github.io/2019/10/12/如何使用markdown书写博客/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sidang1897.github.io/2019/11/09/MySQL事务详解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -410,18 +355,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/14/CentOS7网络配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CentOS7网络配置
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/10/hexo-yilia博客创建方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo-yilia博客创建方法</div>
+    <a href="/2019/10/14/Java种常见的设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java种常见的设计模式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -448,7 +384,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、Markdown简要介绍"><span class="toc-number">1.</span> <span class="toc-text">一、Markdown简要介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、Markdown使用方法"><span class="toc-number">2.</span> <span class="toc-text">二、Markdown使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-标题"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-换行"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 换行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-段落"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 段落</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-区块引用"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 区块引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-超链接"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 超链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-无序列表"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 无序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-有序列表"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 有序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-分隔线"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 分隔线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-字体"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-代码"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-转义符"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 转义符</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、事务的定义"><span class="toc-number">1.</span> <span class="toc-text">1、事务的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、事务语句"><span class="toc-number">2.</span> <span class="toc-text">2、事务语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、事务机制注意事项"><span class="toc-number">3.</span> <span class="toc-text">3、事务机制注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、事务的四个特性"><span class="toc-number">4.</span> <span class="toc-text">4、事务的四个特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-原子性-A"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 原子性 A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2一致性-C"><span class="toc-number">4.2.</span> <span class="toc-text">4.2一致性 C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-隔离性-I"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 隔离性 I</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一级别：读未提交read-uncommitted"><span class="toc-number">4.3.1.</span> <span class="toc-text">* 第一级别：读未提交read uncommitted</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二级别：读已提交read-committed"><span class="toc-number">4.3.2.</span> <span class="toc-text">* 第二级别：读已提交read committed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三级别：可重复读-repeatable-read"><span class="toc-number">4.3.3.</span> <span class="toc-text">* 第三级别：可重复读 repeatable read</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第四级别：序列化读-串行化读serializable"><span class="toc-number">4.3.4.</span> <span class="toc-text">* 第四级别：序列化读/串行化读serializable</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-持久性-D"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 持久性 D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、演示事务"><span class="toc-number">4.5.</span> <span class="toc-text">5、演示事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-演示MySQL默认的隔离级别，读已提交（read-committed）"><span class="toc-number">4.5.1.</span> <span class="toc-text">5.1 演示MySQL默认的隔离级别，读已提交（read committed）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-演示第一级别，读未提交（read-uncommitted）"><span class="toc-number">4.5.2.</span> <span class="toc-text">5.2 演示第一级别，读未提交（read uncommitted）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-演示第二级别，读已提交（read-committed）"><span class="toc-number">4.5.3.</span> <span class="toc-text">5.3 演示第二级别，读已提交（read committed）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-演示第三级别，可重复读（repeatable-read）"><span class="toc-number">4.5.4.</span> <span class="toc-text">5.4 演示第三级别，可重复读（repeatable read）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-演示第四级别，序列化读（serializable）"><span class="toc-number">4.5.5.</span> <span class="toc-text">5.4 演示第四级别，序列化读（serializable）</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
