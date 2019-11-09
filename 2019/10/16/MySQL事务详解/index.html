@@ -6,18 +6,34 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | Blog</title>
+  <title>MySQL事务详解 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是进击的小人儿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
+  <meta name="description" content="这里介绍MySQL数据库中重要的内容 ——  事务">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL事务详解">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/MySQL事务详解/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="是进击的小人儿">
+<meta property="og:description" content="这里介绍MySQL数据库中重要的内容 ——  事务">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/0.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/00.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/22.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/23.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/24.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/25.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/26.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/27.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/28.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/29.png">
+<meta property="og:updated_time" content="2019-11-09T14:46:14.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
-<meta name="twitter:description" content="是进击的小人儿">
+<meta name="twitter:title" content="MySQL事务详解">
+<meta name="twitter:description" content="这里介绍MySQL数据库中重要的内容 ——  事务">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/16/MySQL事务详解/0.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -149,43 +165,271 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-MySQL事务详解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      MySQL事务详解
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/09/MySQL事务详解/" class="archive-article-date">
-  	<time datetime="2019-11-09T14:23:01.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+        
+        <a href="/2019/10/16/MySQL事务详解/" class="archive-article-date">
+  	<time datetime="2019-10-16T07:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
+</a>
+        
+        
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>  
+      
+
+ 
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这里介绍MySQL数据库中重要的内容 ——  事务 </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1、事务的定义"><a href="#1、事务的定义" class="headerlink" title="1、事务的定义"></a>1、事务的定义</h2><p>一个事务是一个完整的业务逻辑单元，不可再分；例如：银行转账，从A账户到B账号转账1000元，需要执行两条update语句：  </p>
+<pre><code class="mysql">update act set balance=balance-1000 where actno=&apos;账户A&apos;;      
+update act set balance=balance+1000 where actno=&apos;账户B&apos;;</code></pre>
+<p>以上两条DML语句只能同时成功或失败，必须使用‘事务’机制。 </p>
+<h2 id="2、事务语句"><a href="#2、事务语句" class="headerlink" title="2、事务语句"></a>2、事务语句</h2><p>和事务相关的语句只有DML语句（update、insert、delete），其他SQL语句不能使用事务机制。只能使用DML语句的原因是：DML语句与数据处理息息相关，增删改操作是对数据库操作的最主要单元。事务的存在是为了保证数据的<strong>完整性，安全性</strong>。  </p>
+<h2 id="3、事务机制注意事项"><a href="#3、事务机制注意事项" class="headerlink" title="3、事务机制注意事项"></a>3、事务机制注意事项</h2><p>若当前业务只需要一条DML语句就可以完成任务，那么就不需要事务机制。然而，在现实业务中，往往需要多条DML语句才能完成一个业务，此时就需要事务。  </p>
+<h2 id="4、事务的四个特性"><a href="#4、事务的四个特性" class="headerlink" title="4、事务的四个特性"></a>4、事务的四个特性</h2><h3 id="4-1-原子性-A"><a href="#4-1-原子性-A" class="headerlink" title="4.1 原子性 A"></a>4.1 原子性 A</h3><p>事务是最小的工作单元，不可再分。  </p>
+<h3 id="4-2一致性-C"><a href="#4-2一致性-C" class="headerlink" title="4.2一致性 C"></a>4.2一致性 C</h3><p>事务必须保证多条DML语句<strong>同时</strong>成功或失败。   </p>
+<h3 id="4-3-隔离性-I"><a href="#4-3-隔离性-I" class="headerlink" title="4.3 隔离性 I"></a>4.3 隔离性 I</h3><p>事务A和事务B具有隔离，以防数据紊乱。隔离分为四个级别     </p>
+<h4 id="第一级别：读未提交read-uncommitted"><a href="#第一级别：读未提交read-uncommitted" class="headerlink" title="* 第一级别：读未提交read uncommitted"></a>* 第一级别：读未提交<code>read uncommitted</code></h4><p>对方事务还没有提交，我们当前事务可以读取到对方未提交的数据。该级别存在脏读现象(Dirty Read)，表示读到了脏数据（未提交的数据）。  </p>
+<h4 id="第二级别：读已提交read-committed"><a href="#第二级别：读已提交read-committed" class="headerlink" title="* 第二级别：读已提交read committed"></a>* 第二级别：读已提交<code>read committed</code></h4><p>可以读到对方提交过的数据，读已提交存在的问题是：不可重复读（对方提交频繁时，读到的数据一直在变，不重复）。这种隔离级别解决了脏读现象。     </p>
+<h4 id="第三级别：可重复读-repeatable-read"><a href="#第三级别：可重复读-repeatable-read" class="headerlink" title="* 第三级别：可重复读 repeatable read"></a>* 第三级别：可重复读 <code>repeatable read</code></h4><p>这种隔离级别解决了：不可重复读问题。这种隔离级别存在的问题是：读到的数据是幻像。    </p>
+<h4 id="第四级别：序列化读-串行化读serializable"><a href="#第四级别：序列化读-串行化读serializable" class="headerlink" title="* 第四级别：序列化读/串行化读serializable"></a>* 第四级别：序列化读/串行化读<code>serializable</code></h4><p>解决了所有问题，但是效率低，需要事务排队。<br>oracle数据库默认的隔离级别是：读已提交。 MySQL数据库默认的隔离级别是：可重复读。   </p>
+<h3 id="4-4-持久性-D"><a href="#4-4-持久性-D" class="headerlink" title="4.4 持久性 D"></a>4.4 持久性 D</h3><p>最终数据必须持久化到硬盘文件中，事务才算成功结束，也就是说，事务的结束，是在执行到硬盘后，不管是否更新硬盘信息，必须到这一步。  </p>
+<h3 id="5、演示事务"><a href="#5、演示事务" class="headerlink" title="5、演示事务"></a>5、演示事务</h3><ul>
+<li>注意：MySQL数据库默认情况下是自动提交的。（也即每执行一条DML语句则提交一次），关闭自动提交( start transaction )  </li>
+<li>设置数据库的隔离级别: <code>set global transaction isolation  level (级别名)</code>   </li>
+<li>创建演示表test  <pre><code class="MySQL">drop table if exists test;
+create table if not exists test(
+  id int(10) primary key auto_increment,
+  name varchar(10) not null
+);  
+desc MySQL事务详解;</code></pre>
+<img src="/2019/10/16/MySQL事务详解/0.png" alt="pic">   </li>
+<li>为了更直观的显示隔离级别，打开两个DOS窗口，模拟两个用户同时登陆MySQL数据库，更直观的显示在事务机制下的数据变化。<br><img src="/2019/10/16/MySQL事务详解/00.png" alt="pic">    <h4 id="5-1-演示MySQL默认的隔离级别，读已提交（read-committed）"><a href="#5-1-演示MySQL默认的隔离级别，读已提交（read-committed）" class="headerlink" title="5.1 演示MySQL默认的隔离级别，读已提交（read committed）"></a>5.1 演示MySQL默认的隔离级别，读已提交（read committed）</h4>在DOS1输入：<code>insert into test(name) values(&#39;jake&#39;);</code><br>在DOS2输入：<code>select * from test;</code><br>结果如图，MySQL默认的是read committed级别，也即自动提交，更新数据后，自动存入硬盘<br><img src="/2019/10/16/MySQL事务详解/1.png" alt="pic"><br>即使是在DOS1窗口输入 rollback回滚数据，在DOS2仍旧能看见数据。这是因为MySQL默认提交(commit)，事务已经结束。导致输入rollback是无效的。<br><img src="/2019/10/16/MySQL事务详解/10.png" alt="pic">   <h4 id="5-2-演示第一级别，读未提交（read-uncommitted）"><a href="#5-2-演示第一级别，读未提交（read-uncommitted）" class="headerlink" title="5.2 演示第一级别，读未提交（read uncommitted）"></a>5.2 演示第一级别，读未提交（read uncommitted）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level read uncommitted;</code>，设置事务机制开始<code>start transaction</code><br><img src="/2019/10/16/MySQL事务详解/21.png" alt="pic">   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;jake&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，可以直接查看到数据变化，这是因为‘读未提交’级别。<br><img src="/2019/10/16/MySQL事务详解/22.png" alt="pic">   </li>
+<li>然后在DOS1窗口输入<code>rollback</code>进行回滚操作，结束本次事务机制，结果如图，显然，rollback会将数据不存入硬盘，因此在此次事务结束后，再查寻test表格，结果为空。<br><img src="/2019/10/16/MySQL事务详解/23.png" alt="pic">  <h4 id="5-3-演示第二级别，读已提交（read-committed）"><a href="#5-3-演示第二级别，读已提交（read-committed）" class="headerlink" title="5.3 演示第二级别，读已提交（read committed）"></a>5.3 演示第二级别，读已提交（read committed）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level read committed;</code>，设置事务机制开始<code>start transaction</code>   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;mary&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，不能查看到数据变化，这是因为‘读已提交’级别。在commit之前，读不到数据变化。<br><img src="/2019/10/16/MySQL事务详解/24.png" alt="pic">  </li>
+<li>在DOS1窗口输入<code>commit</code>提交本次事务，结束事务，并将数据存入硬盘，再在DOS2窗口读取数据，如图所示。<br><img src="/2019/10/16/MySQL事务详解/25.png" alt="pic">    <h4 id="5-4-演示第三级别，可重复读（repeatable-read）"><a href="#5-4-演示第三级别，可重复读（repeatable-read）" class="headerlink" title="5.4 演示第三级别，可重复读（repeatable read）"></a>5.4 演示第三级别，可重复读（repeatable read）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level repeatable read;</code>，设置事务机制开始<code>start transaction</code>   </li>
+<li>在DOS1窗口插入数据<code>insert into test(name) values(&#39;duke&#39;);</code>，紧接着在DOS2窗口直接查看结果，显然，不能查看到数据变化，然后在DOS1窗口输入<code>commit</code>提交本次事务，结束事务，并将数据存入硬盘，再在DOS2窗口读取数据，还是不能读到数据变化，这就是重复读的含义。如图所示。<br><img src="/2019/10/16/MySQL事务详解/26.png" alt="pic">  </li>
+<li>为了更直观的显示 repeatable read 级别的特点，我们在DOS1窗口将test表清空，提交以后。再在DOS2窗口查看变化，发现仍旧没变。<br><img src="/2019/10/16/MySQL事务详解/27.png" alt="pic">   <h4 id="5-4-演示第四级别，序列化读（serializable）"><a href="#5-4-演示第四级别，序列化读（serializable）" class="headerlink" title="5.4 演示第四级别，序列化读（serializable）"></a>5.4 演示第四级别，序列化读（serializable）</h4></li>
+<li>首先手动设置数据库的全局隔离级别<code>set global transaction isolation level serializable;</code>，接着在test表中默认插入几个数据，便于观察，然后设置事务机制开始<code>start transaction</code>  </li>
+<li>设置结束后，在DOS1窗口插入新数据<code>insert into test(name) values(&#39;xiaoming&#39;);</code>，然后在DOS2窗口查看数据变化，发现程序在DOS2窗口处于等待状态，这就是序列读取的特点，一次只允许一个事务进行。<br><img src="/2019/10/16/MySQL事务详解/28.png" alt="pic">   </li>
+<li>等待一段时间后，DOS2窗口会报错：<code>ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction</code> </li>
+<li>在DOS1窗口提交事务，再在DOS2窗口查询数据，便可以查到数据变化。如图所示：<br><img src="/2019/10/16/MySQL事务详解/29.png" alt="pic">  </li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢，要恰饭的嘛！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixinpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sidang1897.github.io/2019/10/16/MySQL事务详解/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/14/Java种常见的设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java种常见的设计模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、事务的定义"><span class="toc-number">1.</span> <span class="toc-text">1、事务的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、事务语句"><span class="toc-number">2.</span> <span class="toc-text">2、事务语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、事务机制注意事项"><span class="toc-number">3.</span> <span class="toc-text">3、事务机制注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、事务的四个特性"><span class="toc-number">4.</span> <span class="toc-text">4、事务的四个特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-原子性-A"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 原子性 A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2一致性-C"><span class="toc-number">4.2.</span> <span class="toc-text">4.2一致性 C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-隔离性-I"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 隔离性 I</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#第一级别：读未提交read-uncommitted"><span class="toc-number">4.3.1.</span> <span class="toc-text">* 第一级别：读未提交read uncommitted</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第二级别：读已提交read-committed"><span class="toc-number">4.3.2.</span> <span class="toc-text">* 第二级别：读已提交read committed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第三级别：可重复读-repeatable-read"><span class="toc-number">4.3.3.</span> <span class="toc-text">* 第三级别：可重复读 repeatable read</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第四级别：序列化读-串行化读serializable"><span class="toc-number">4.3.4.</span> <span class="toc-text">* 第四级别：序列化读/串行化读serializable</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-持久性-D"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 持久性 D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、演示事务"><span class="toc-number">4.5.</span> <span class="toc-text">5、演示事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-演示MySQL默认的隔离级别，读已提交（read-committed）"><span class="toc-number">4.5.1.</span> <span class="toc-text">5.1 演示MySQL默认的隔离级别，读已提交（read committed）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-演示第一级别，读未提交（read-uncommitted）"><span class="toc-number">4.5.2.</span> <span class="toc-text">5.2 演示第一级别，读未提交（read uncommitted）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-演示第二级别，读已提交（read-committed）"><span class="toc-number">4.5.3.</span> <span class="toc-text">5.3 演示第二级别，读已提交（read committed）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-演示第三级别，可重复读（repeatable-read）"><span class="toc-number">4.5.4.</span> <span class="toc-text">5.4 演示第三级别，可重复读（repeatable read）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-演示第四级别，序列化读（serializable）"><span class="toc-number">4.5.5.</span> <span class="toc-text">5.4 演示第四级别，序列化读（serializable）</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TT0VNogDV7d7fUVgxvW4B9is-gzGzoHsz',
+      app_key: 'xfxcS67JFL2srwhTtEqrSVDb',
+      placeholder: '欢迎交流！'
+    });
+</script>
+
   
 
-    
+
+  
+  
+  
+
+  
+ 
+  
+
+  
+
+
 
 
           </div>
@@ -222,8 +466,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -293,6 +537,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客设置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
