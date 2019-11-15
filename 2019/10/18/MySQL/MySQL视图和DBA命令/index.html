@@ -6,18 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/11 | Blog</title>
+  <title>MySQL视图和DBA命令 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是进击的小人儿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
+  <meta name="description" content="介绍MySQL视图和DBA命令的相关知识，本文针对常用的必须掌握的内容。">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL视图和DBA命令">
+<meta property="og:url" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="是进击的小人儿">
+<meta property="og:description" content="介绍MySQL视图和DBA命令的相关知识，本文针对常用的必须掌握的内容。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/3.1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/6.png">
+<meta property="og:updated_time" content="2019-11-15T09:34:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog">
-<meta name="twitter:description" content="是进击的小人儿">
+<meta name="twitter:title" content="MySQL视图和DBA命令">
+<meta name="twitter:description" content="介绍MySQL视图和DBA命令的相关知识，本文针对常用的必须掌握的内容。">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/18/MySQL/MySQL视图和DBA命令/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -149,36 +159,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL/MySQL视图和DBA命令" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/11/12/MySQL/MySQL视图和DBA命令/" class="archive-article-date">
-  	<time datetime="2019-11-12T11:55:36.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/12/MySQL/MySQL视图和DBA命令/">MySQL视图和DBA命令</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL视图和DBA命令
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/10/18/MySQL/MySQL视图和DBA命令/" class="archive-article-date">
+  	<time datetime="2019-10-18T06:20:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
+</a>
+        
+        
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+
+      </header>  
+      
+
+ 
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>介绍MySQL视图和DBA命令的相关知识，本文针对常用的必须掌握的内容。   </p>
+</blockquote>
+<a id="more"></a>     
+<h1 id="一、视图"><a href="#一、视图" class="headerlink" title="一、视图"></a>一、视图</h1><h2 id="1-什么是视图？"><a href="#1-什么是视图？" class="headerlink" title="1. 什么是视图？"></a>1. 什么是视图？</h2><p>视图是根据查询（select语句）定义的数据库对象，一般用于获取想要看到的局部数据。<br>视图有时也被称为“虚拟表”，可以被用来从常规表（基表）或其他视图中查询数据；相对于直接使用基表，具有以下优势：<br>—&gt; 访问数据变得简单<br>—&gt; 可以通过视图针对不同用户显示不用内容   </p>
+<h2 id="2-视图的作用"><a href="#2-视图的作用" class="headerlink" title="2. 视图的作用"></a>2. 视图的作用</h2><p>—&gt; 提高检索效率，简化表格内容（视图一般只展示表的部分信息）<br>—&gt; 隐藏表的实现细节，面向视图检索更能保证原表信息不完全泄露<br>—&gt; 在外包开发时，可以将原表中部分信息做成视图，给工程师开发，原表数据安全性得到保障  </p>
+<h2 id="3-创建和删除视图"><a href="#3-创建和删除视图" class="headerlink" title="3. 创建和删除视图"></a>3. 创建和删除视图</h2><p>创建：<code>create view empview as select ename,sal from emp;</code><br>删除：<code>drop view empview;</code><br>—&gt; 注意：视图的创建只能针对select语句<br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/1.png" alt="pic">  </p>
+<h2 id="4-对视图进行增删改查操作（这里修改信息会同步到原表）"><a href="#4-对视图进行增删改查操作（这里修改信息会同步到原表）" class="headerlink" title="4. 对视图进行增删改查操作（这里修改信息会同步到原表）"></a>4. 对视图进行增删改查操作（这里修改信息会同步到原表）</h2><p>修改：<code>update emp1view set ename=&#39;新改名&#39; where sal=800;</code><br>删除：<code>delete from emp1view where sal=1300;</code><br>—&gt; 这里针对视图修改，但是数据变动会影响原表信息<br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/2.png" alt="pic">   </p>
+<h1 id="二、DBA命令"><a href="#二、DBA命令" class="headerlink" title="二、DBA命令"></a>二、DBA命令</h1><p>DBA命令中两个部分较为重要 —— 导入和导出数据库  </p>
+<h2 id="1-导出数据库"><a href="#1-导出数据库" class="headerlink" title="1. 导出数据库"></a>1. 导出数据库</h2><ul>
+<li>导出整个库<br>在DOS窗口：<code>mysqldump 数据库名&gt;导出地址\新数据库名.sql -uroot -p密码;</code><br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/3.png" alt="pic">  </li>
+<li>导出某张表<br>在DOS窗口：<code>mysqldump company emp&gt;D:\emp_2.sql -uroot -p123</code><br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/3.1.png" alt="pic">   </li>
+<li>导出后查看D盘数据<br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/4.png" alt="pic">  <h2 id="2、导入数据"><a href="#2、导入数据" class="headerlink" title="2、导入数据"></a>2、导入数据</h2>在MySQL中依次：<br>—&gt; 创建新数据库<code>create database company_bak;</code><br>—&gt; 使用数据库<code>use company_bak;</code><br>—&gt; 进入后输入<code>source D:\company_bak.sql</code> (这里不要 ; 号结尾)<br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/5.png" alt="pic"><br><img src="/2019/10/18/MySQL/MySQL视图和DBA命令/6.png" alt="pic">   </li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢，要恰饭的嘛！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixinpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -190,19 +254,147 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sidang1897.github.io/2019/10/18/MySQL/MySQL视图和DBA命令/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/17/MySQL/MySQL设计三范式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL设计三范式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、视图"><span class="toc-number">1.</span> <span class="toc-text">一、视图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是视图？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是视图？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-视图的作用"><span class="toc-number">1.2.</span> <span class="toc-text">2. 视图的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-创建和删除视图"><span class="toc-number">1.3.</span> <span class="toc-text">3. 创建和删除视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-对视图进行增删改查操作（这里修改信息会同步到原表）"><span class="toc-number">1.4.</span> <span class="toc-text">4. 对视图进行增删改查操作（这里修改信息会同步到原表）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、DBA命令"><span class="toc-number">2.</span> <span class="toc-text">二、DBA命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-导出数据库"><span class="toc-number">2.1.</span> <span class="toc-text">1. 导出数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、导入数据"><span class="toc-number">2.2.</span> <span class="toc-text">2、导入数据</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TT0VNogDV7d7fUVgxvW4B9is-gzGzoHsz',
+      app_key: 'xfxcS67JFL2srwhTtEqrSVDb',
+      placeholder: '欢迎交流！'
+    });
+</script>
+
   
 
-    
+
+  
+  
+  
+
+  
+ 
+  
+
+  
+
+
 
 
           </div>
@@ -239,8 +431,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -305,11 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
