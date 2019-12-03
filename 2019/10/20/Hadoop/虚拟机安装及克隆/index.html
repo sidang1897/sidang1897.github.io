@@ -9,7 +9,7 @@
   <title>虚拟机安装及克隆 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Hadoop学习的基础，需要学会安装虚拟机并克隆">
-<meta name="keywords" content="Hadoop,Linux">
+<meta name="keywords" content="Linux,Hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟机安装及克隆">
 <meta property="og:url" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/index.html">
@@ -65,7 +65,14 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/5.5.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/5.6.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/5.7.png">
-<meta property="og:updated_time" content="2019-12-02T11:08:44.745Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/6.1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/6.4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/6.5.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/6.6.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/6.7.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/7.1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/20/Hadoop/虚拟机安装及克隆/7.2.png">
+<meta property="og:updated_time" content="2019-12-03T05:45:03.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机安装及克隆">
 <meta name="twitter:description" content="Hadoop学习的基础，需要学会安装虚拟机并克隆">
@@ -250,8 +257,8 @@
 <h3 id="2-3-配置虚拟机的网络"><a href="#2-3-配置虚拟机的网络" class="headerlink" title="2.3 配置虚拟机的网络"></a>2.3 配置虚拟机的网络</h3><p>这里参考我的另一篇博客即可，很详细的介绍了如何设置。点击<a href="https://sidang1897.github.io/2019/10/14/Linux/CentOS7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">网络设置</a>，网址：<a href="https://sidang1897.github.io/2019/10/14/Linux/CentOS7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">https://sidang1897.github.io/2019/10/14/Linux/CentOS7%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</a> ，按照我的博客，将每一步都做好。     </p>
 <h3 id="2-4-给主机地址设置名称"><a href="#2-4-给主机地址设置名称" class="headerlink" title="2.4 给主机地址设置名称"></a>2.4 给主机地址设置名称</h3><p>给当前主机地址设置名称，使得机器间通信只需要输入各主机名就行，而不需要输入各自的IP地址，容易记。<br>首先，输入<code>vim /etc/hosts</code>打开该文件，配置IP地址和域名的关系，如图所示修改即可：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/4.2.png" alt="pic">   </p>
 <ul>
-<li>完成上述配置后，基础的主机就设置成功了，接下来要利用这台主机克隆出几台新的主机。输入<code>poweroff</code>关机，并在关机界面对当前主机进行拍摄快照，如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/4.1.png" alt="pic">  <h2 id="3、克隆新虚拟机"><a href="#3、克隆新虚拟机" class="headerlink" title="3、克隆新虚拟机"></a>3、克隆新虚拟机</h2>需要根据当前的主机克隆出几台新主机来，这里演示一个，其他的完全类似。如图所示步骤进行操作即可：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.1.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.2.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.3.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.4.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.5.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.6.png" alt="pic"><br>到这里，一台克隆机就配置好了，接下来按照完全相同的步骤克隆其他主机即可，最终结果如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.7.png" alt="pic">  </li>
-<li>到此，虚拟机的安装及克隆就全部完成了，注意，这里面关闭防火墙以及删除config文件的部分内容是针对hadoop学习的，单纯的Linux无需此操作。  </li>
+<li>完成上述配置后，基础的主机就设置成功了，接下来要利用这台主机克隆出几台新的主机。输入<code>poweroff</code>关机，并在关机界面对当前主机进行拍摄快照，如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/4.1.png" alt="pic">    <h2 id="3、克隆新虚拟机"><a href="#3、克隆新虚拟机" class="headerlink" title="3、克隆新虚拟机"></a>3、克隆新虚拟机</h2>需要根据当前的主机克隆出几台新主机来，这里演示一个，其他的完全类似。如图所示步骤进行操作即可：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.1.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.2.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.3.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.4.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.5.png" alt="pic"><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.6.png" alt="pic"><br>到这里，一台克隆机就配置好了，接下来按照完全相同的步骤克隆其他主机即可，最终结果如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/5.7.png" alt="pic">    <h2 id="4、配置克隆好的虚拟机"><a href="#4、配置克隆好的虚拟机" class="headerlink" title="4、配置克隆好的虚拟机"></a>4、配置克隆好的虚拟机</h2>虚拟机克隆好以后，还需要修改克隆机的 hostname(主机名)，ip地址等信息，方便以后的通信。这里以一个克隆机为例，其他克隆机的配置完全相同。   <h3 id="4-1-修改IP地址"><a href="#4-1-修改IP地址" class="headerlink" title="4.1 修改IP地址"></a>4.1 修改IP地址</h3>打开克隆机并输入root+密码登录，然后在窗口输入： <code>vim /etc/sysconfig/network-scripts/ifcfg-ens33</code>，进入编辑界面并修改当前克隆机的IP地址，如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/6.1.png" alt="pic">   <h3 id="4-2-修改当前克隆机的主机名"><a href="#4-2-修改当前克隆机的主机名" class="headerlink" title="4.2 修改当前克隆机的主机名"></a>4.2 修改当前克隆机的主机名</h3>输入<code>hostname</code>查看当前主机名，一般都是localhost.localdomain这种类似的主机名，查看以后，输入<code>hostnamectl set-hostname hadoop02</code>，至此，主机名修改成功。   <h3 id="4-3-查看并修改IP地址和主机名的映射"><a href="#4-3-查看并修改IP地址和主机名的映射" class="headerlink" title="4.3 查看并修改IP地址和主机名的映射"></a>4.3 查看并修改IP地址和主机名的映射</h3>这一步的设置，在之前设置母机的时候，已经修改了，这里查看一下。如果没有修改的，在这里补上即可。输入<code>vim etc/hosts</code><br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/6.4.png" alt="pic">   <h3 id="4-4-修改Windows系统下的host文件"><a href="#4-4-修改Windows系统下的host文件" class="headerlink" title="4.4 修改Windows系统下的host文件"></a>4.4 修改Windows系统下的host文件</h3>这里也要修改windows系统的host文件，将配置的几个克隆机IP和主机名在Windows系统下备注，方便后续克隆机和Windows主机通信。host位置在：C:\Windows\System32\drivers\etc，打开后会看到如下页面：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/6.5.png" alt="pic"><br>打开文件后，按照下图所示修改内容即可。<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/6.6.png" alt="pic"><br>添加以后，保存退出即可，注意，这个host文件只需要修改一次就行了，后面hadoop03  hadoop04虚拟机设置的时候，只需要重复4.1/4.2/4.3的步骤就可以了。  <h3 id="4-5-拍摄快照"><a href="#4-5-拍摄快照" class="headerlink" title="4.5 拍摄快照"></a>4.5 拍摄快照</h3>注意：每设置好一台克隆机以后，输入<code>poweroff</code>关机，并拍摄快照，如图所示：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/6.7.png" alt="pic">       <h2 id="5、检查克隆机配置"><a href="#5、检查克隆机配置" class="headerlink" title="5、检查克隆机配置"></a>5、检查克隆机配置</h2><h3 id="5-1-检查单个克隆机是否配置正确"><a href="#5-1-检查单个克隆机是否配置正确" class="headerlink" title="5.1 检查单个克隆机是否配置正确"></a>5.1 检查单个克隆机是否配置正确</h3>首先，开启克隆后的虚拟机并登录，输入<code>ip addr</code>，查看网络信息，如图：<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/7.1.png" alt="pic">   <h3 id="5-2-检查克隆机之间相互通信"><a href="#5-2-检查克隆机之间相互通信" class="headerlink" title="5.2 检查克隆机之间相互通信"></a>5.2 检查克隆机之间相互通信</h3>在一个克隆机窗口输入<code>ping hadoop03</code>进行通信，查看是否有数据传输。<br><img src="/2019/10/20/Hadoop/虚拟机安装及克隆/7.2.png" alt="pic">  </li>
+<li>等所有的克隆机都设置并检查完毕后，到此，虚拟机的安装及克隆就全部完成了。接下来，可以在各克隆机中安装hadoop和jdk软件进行伪集群设置了。   </li>
 </ul>
 
       
@@ -297,11 +304,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
         		</li>
       		
 		</ul>
@@ -400,7 +407,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、下载所需软件"><span class="toc-number">1.</span> <span class="toc-text">一、下载所需软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、VMware下载"><span class="toc-number">1.1.</span> <span class="toc-text">1、VMware下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Centos-Linux版下载"><span class="toc-number">1.2.</span> <span class="toc-text">2、Centos Linux版下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、JDK下载"><span class="toc-number">1.3.</span> <span class="toc-text">3、JDK下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Hadoop下载"><span class="toc-number">1.4.</span> <span class="toc-text">4、Hadoop下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、xshell下载"><span class="toc-number">1.5.</span> <span class="toc-text">5、xshell下载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、虚拟机的安装"><span class="toc-number">2.</span> <span class="toc-text">二、虚拟机的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、安装VMware软件"><span class="toc-number">2.1.</span> <span class="toc-text">1、安装VMware软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装Linux虚拟机"><span class="toc-number">2.2.</span> <span class="toc-text">2、安装Linux虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-配置虚拟机的硬件"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.1 配置虚拟机的硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-配置虚拟机的软件"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2 配置虚拟机的软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-配置虚拟机的网络"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3 配置虚拟机的网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-给主机地址设置名称"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.4 给主机地址设置名称</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、克隆新虚拟机"><span class="toc-number">2.3.</span> <span class="toc-text">3、克隆新虚拟机</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、下载所需软件"><span class="toc-number">1.</span> <span class="toc-text">一、下载所需软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、VMware下载"><span class="toc-number">1.1.</span> <span class="toc-text">1、VMware下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Centos-Linux版下载"><span class="toc-number">1.2.</span> <span class="toc-text">2、Centos Linux版下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、JDK下载"><span class="toc-number">1.3.</span> <span class="toc-text">3、JDK下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Hadoop下载"><span class="toc-number">1.4.</span> <span class="toc-text">4、Hadoop下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、xshell下载"><span class="toc-number">1.5.</span> <span class="toc-text">5、xshell下载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、虚拟机的安装"><span class="toc-number">2.</span> <span class="toc-text">二、虚拟机的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、安装VMware软件"><span class="toc-number">2.1.</span> <span class="toc-text">1、安装VMware软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装Linux虚拟机"><span class="toc-number">2.2.</span> <span class="toc-text">2、安装Linux虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-配置虚拟机的硬件"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.1 配置虚拟机的硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-配置虚拟机的软件"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2 配置虚拟机的软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-配置虚拟机的网络"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3 配置虚拟机的网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-给主机地址设置名称"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.4 给主机地址设置名称</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、克隆新虚拟机"><span class="toc-number">2.3.</span> <span class="toc-text">3、克隆新虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、配置克隆好的虚拟机"><span class="toc-number">2.4.</span> <span class="toc-text">4、配置克隆好的虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-修改IP地址"><span class="toc-number">2.4.1.</span> <span class="toc-text">4.1 修改IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-修改当前克隆机的主机名"><span class="toc-number">2.4.2.</span> <span class="toc-text">4.2 修改当前克隆机的主机名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-查看并修改IP地址和主机名的映射"><span class="toc-number">2.4.3.</span> <span class="toc-text">4.3 查看并修改IP地址和主机名的映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-修改Windows系统下的host文件"><span class="toc-number">2.4.4.</span> <span class="toc-text">4.4 修改Windows系统下的host文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-拍摄快照"><span class="toc-number">2.4.5.</span> <span class="toc-text">4.5 拍摄快照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、检查克隆机配置"><span class="toc-number">2.5.</span> <span class="toc-text">5、检查克隆机配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-检查单个克隆机是否配置正确"><span class="toc-number">2.5.1.</span> <span class="toc-text">5.1 检查单个克隆机是否配置正确</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-检查克隆机之间相互通信"><span class="toc-number">2.5.2.</span> <span class="toc-text">5.2 检查克隆机之间相互通信</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -550,11 +557,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
